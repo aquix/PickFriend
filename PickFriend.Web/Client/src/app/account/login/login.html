@@ -1,0 +1,14 @@
+<p>Login or <a [routerLink]="['/register']">register</a></p>
+
+<form [formGroup]="loginForm" novalidate (ngSubmit)="onLoginClick()">
+    <div>
+        <label for="login">Login:</label>
+        <input type="text" formControlName="login" class="validation" name="login" value="">
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" formControlName="password" class="validation" name="password" value="">
+
+    </div>
+    <button type="submit" [disabled]="loginForm.invalid">Log in</button>
+</form>
