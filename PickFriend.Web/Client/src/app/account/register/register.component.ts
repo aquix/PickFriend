@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import CustomValidators from '../custom-validators';
 
+import { AccountService } from '../account.service';
+import { RegisterModel } from './register-model.interface';
 
 @Component({
     selector: 'register-page',
@@ -10,11 +12,11 @@ import CustomValidators from '../custom-validators';
 export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
 
-    constructor(private formBuilder: FormBuilder) { }
+    constructor(private formBuilder: FormBuilder, private accountService: AccountService) { }
 
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
-            login: ['', [Validators.required, Validators.minLength(3)]],
+            username: ['', [Validators.required, Validators.minLength(3)]],
             passwords: this.formBuilder.group({
                 password: ['', [CustomValidators.password]],
                 passwordConfirmation: ['']
@@ -25,7 +27,10 @@ export class RegisterComponent implements OnInit {
         });
     }
 
-    onRegisterClick() {
-        console.log('register');
+    onRegisterClick({ value }: { value: RegisterModel }) {
+        this.accountService.register(value.username, value.passwords.password, value.passwords.passwordConfirmation)
+            .subscribe(res => {
+                console.log(res);
+            })
     }
 }

@@ -1,9 +1,18 @@
 <p>Login or <a [routerLink]="['/register']">register</a></p>
+<p>
+    <a [routerLink]="['/profile']">Go to profile</a>
+</p>
+<p>
+    <a [routerLink]="['/']">Go to main</a>
+</p>
 
-<form [formGroup]="loginForm" novalidate (ngSubmit)="onLoginClick()">
+<form [formGroup]="loginForm" novalidate (ngSubmit)="onLoginClick(loginForm)">
+    <div [hidden]="!errorMessage" class="error-message">
+        <span>{{ errorMessage }}</span>
+    </div>
     <div>
-        <label for="login">Login:</label>
-        <input type="text" formControlName="login" class="validation" name="login" value="">
+        <label for="username">Login:</label>
+        <input type="text" formControlName="username" class="validation" name="username" value="">
     </div>
     <div>
         <label for="password">Password:</label>
