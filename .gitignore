@@ -15,6 +15,9 @@
 *.sln.docstates
 *.vcxproj.filters
 
+# Secret files
+**/src/secretconfig.json
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
