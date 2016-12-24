@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { AccountService } from './account/account.service';
 import { AuthInfoStorage } from './account/auth-info-storage.service';
 import { AuthGuard } from './account/auth-guard.service';
+import { UserService } from './main/user.service';
 
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
@@ -27,7 +28,7 @@ const GMAPS_API_KEY = require('json!../secretconfig.json').gmapsApiKey;
             apiKey: GMAPS_API_KEY
         })],
     declarations: [AppComponent, MainComponent, LoginComponent, RegisterComponent, ProfileComponent],
-    providers: [AccountService, AuthInfoStorage, AuthGuard],
+    providers: [AccountService, AuthInfoStorage, AuthGuard, UserService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

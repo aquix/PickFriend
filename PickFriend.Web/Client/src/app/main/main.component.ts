@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AccountService } from '../account/account.service';
+import { UserService } from './user.service';
+import { User } from './user.model';
 
 import './main.scss';
 
@@ -10,18 +12,30 @@ import './main.scss';
     template: require('./main.html')
 })
 export class MainComponent implements OnInit {
-    lat: number = 53.9045;
-    lng: number = 27.5615;
+    users: User[];
+    myLatitude: number;
+    myLongitude: number;
 
     constructor(
         private router: Router,
-        private accountService: AccountService
+        private accountService: AccountService,
+        private userService: UserService
     ) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.users = this.userService.getUsers();
+        console.log(this.users);
+
+        this.myLatitude = 53.8045;
+        this.myLongitude = 27.5615;
+    }
 
     onLogoutClick() {
         this.accountService.logout();
         this.router.navigate(['/login']);
+    }
+
+    onMarkerClick() {
+        console.log('marker click');
     }
 }

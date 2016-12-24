@@ -3,6 +3,22 @@ Here will be content
 <a [routerLink]="['/profile']">Go to profile</a>
 <a href="javascript:void(0)" (click)="onLogoutClick()">Logout</a>
 
-<sebm-google-map [latitude]="lat" [longitude]="lng">
-  <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+<sebm-google-map [latitude]="myLatitude" [longitude]="myLongitude" >
+    <sebm-google-map-marker
+            *ngFor="let user of users"
+            [latitude]="user.coordLat" [longitude]="user.coordLng"
+            (markerClick)="onMarkerClick()">
+        <sebm-google-map-info-window [disableAutoPan]="true">
+            <div class="user-map-preview">
+                <div class="photo">
+                    <!--temp image-->
+                    <img src="https://support.zenlix.com/img/avatar5.png" alt="Profile image">
+                </div>
+                <div class="info">
+                    <p><strong>{{ user.name }}</strong>, {{ user.age }} years</p>
+                    <p>{{ user.aboutme }}</p>
+                </div>
+            </div>
+        </sebm-google-map-info-window>
+    </sebm-google-map-marker>
 </sebm-google-map>
