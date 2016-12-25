@@ -9,26 +9,36 @@ import { AppComponent } from './app.component';
 import { AccountService } from './account/account.service';
 import { AuthInfoStorage } from './account/auth-info-storage.service';
 import { AuthGuard } from './account/auth-guard.service';
-import { UserService } from './main/user.service';
+import { UserService } from './users/user.service';
+import { LocationService } from './main/map/location/location.service';
 
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
 import { MainComponent } from './main/main.component';
 import { ProfileComponent } from './profile/profile.component';
+import { MapComponent } from './main/map/map.component';
 
 const GMAPS_API_KEY = require('json!../secretconfig.json').gmapsApiKey;
 
-
 @NgModule({
-    imports: [BrowserModule,
+    imports: [
+        BrowserModule,
         ReactiveFormsModule,
         AppRoutingModule,
         HttpModule,
         AgmCoreModule.forRoot({
             apiKey: GMAPS_API_KEY
-        })],
-    declarations: [AppComponent, MainComponent, LoginComponent, RegisterComponent, ProfileComponent],
-    providers: [AccountService, AuthInfoStorage, AuthGuard, UserService],
+        })
+    ],
+    declarations: [
+        AppComponent,
+        MainComponent,
+        LoginComponent,
+        RegisterComponent,
+        ProfileComponent,
+        MapComponent
+    ],
+    providers: [AccountService, AuthInfoStorage, AuthGuard, UserService, LocationService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
