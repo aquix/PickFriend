@@ -1,6 +1,7 @@
 ## Project-specific
 **/Client/dist
 **/Client/typings
+PickFriend.Web/Scripts
 .vscode
 
 ## Ignore Visual Studio temporary files, build results, and

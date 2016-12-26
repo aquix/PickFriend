@@ -5,12 +5,16 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using PickFriend.Data.Entities;
 using PickFriend.Web.Auth.Models;
+using Autofac.Integration.Owin;
+using Autofac;
+using Microsoft.AspNet.Identity.Owin;
+using System.Web.Http;
+using PickFriend.Web.Areas.Auth.Managers;
 
 namespace PickFriend.Web.Auth.Providers
 {
@@ -30,7 +34,8 @@ namespace PickFriend.Web.Auth.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
+            var userManager2 = context.OwinContext.GetUserManager<AppUserManager>();
+            var userManager = GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(AppUserManager)) as AppUserManager;
 
             User user = await userManager.FindAsync(context.UserName, context.Password);
 
