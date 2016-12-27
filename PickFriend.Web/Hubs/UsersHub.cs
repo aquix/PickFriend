@@ -5,10 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.SignalR;
+using PickFriend.Web.Models;
 
 namespace PickFriend.Web.Hubs
 {
-    public class UsersHub : Hub
+    public class UsersHub : Hub<IUsersHub>
     {
         public override Task OnConnected()
         {
@@ -24,9 +25,13 @@ namespace PickFriend.Web.Hubs
             return base.OnDisconnected(stopCalled);
         }
 
-        public void Hello()
+        public void UserUpdated(string id)
         {
-            Clients.All.hello();
+            Debug.Print($"User {id} state changed");
+            Clients.All.NotifyUserUpdated(new UserShortInfo
+            {
+                Id = id
+            });
         }
     }
 }

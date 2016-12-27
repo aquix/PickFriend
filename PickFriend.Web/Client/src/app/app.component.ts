@@ -5,7 +5,6 @@ import './app.scss';
 @Component({
     selector: 'my-app',
     template: `
-        Routing test
         <router-outlet></router-outlet>
         `
 })

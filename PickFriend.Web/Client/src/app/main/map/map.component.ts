@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../users/user.model';
 import { UserService } from '../../users/user.service';
 import { LocationService } from './location/location.service';
-import { Location } from './location/location.interface';
+
+import { UsersHub } from '../../signalr/users.hub';
 
 import './map.scss';
 
 @Component({
     selector: 'map',
-    template: require('./map.html')
+    template: require('./map.html'),
+    providers: [UsersHub]
 })
 export class MapComponent implements OnInit {
     users: User[];
@@ -17,7 +19,8 @@ export class MapComponent implements OnInit {
 
     constructor(
         private userService: UserService,
-        private locationService: LocationService
+        private locationService: LocationService,
+        private usersHub: UsersHub
     ) { }
 
     ngOnInit() {

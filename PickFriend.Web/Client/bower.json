@@ -1,0 +1,25 @@
+{
+  "name": "pick-friend.client",
+  "description": "",
+  "main": "./dist/index.js",
+  "authors": [
+    "Uladzislau Klimiankou <vlad.klimenkoff97@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/aquix/PickFriend",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "signalr": "^2.2.1"
+  },
+  "install": {
+    "path": "dist/lib"
+  }
+}

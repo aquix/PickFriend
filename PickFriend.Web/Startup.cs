@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
+using Microsoft.Owin.Cors;
 using Owin;
 using PickFriend.Web.Util;
 
@@ -16,6 +18,7 @@ namespace PickFriend.Web
             ConfigureAuth(app);
             ConfigureAutofac(app);
 
+            app.UseCors(CorsOptions.AllowAll);
             app.MapSignalR();
         }
     }
