@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AccountService {
-    private static TOKEN_PATH = '/token';
+    private static TOKEN_PATH = `${AppConfig.SERVER}/token`;
 
     constructor(
         private http: Http,

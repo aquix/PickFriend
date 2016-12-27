@@ -15,7 +15,6 @@ namespace PickFriend.Web
         {
             ConfigureAuth(app);
             ConfigureAutofac(app);
-            ConfigureStaticFolder(app);
 
             app.MapSignalR();
         }
