@@ -20,5 +20,6 @@ namespace PickFriend.Data.Entities
         }
 
         public virtual UserInfo UserInfo { get; set; }
+        public virtual LocationInfo LocationInfo { get; set; }
     }
 }

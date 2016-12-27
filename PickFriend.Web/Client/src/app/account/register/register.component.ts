@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import CustomValidators from '../custom-validators';
 
 import { AccountService } from '../account.service';
+import { LocationService } from '../../location/location.service';
+import { UsersHub } from '../../signalr/users.hub';
 import { RegisterModel } from './register-model.interface';
 
 @Component({
@@ -12,7 +14,12 @@ import { RegisterModel } from './register-model.interface';
 export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
 
-    constructor(private formBuilder: FormBuilder, private accountService: AccountService) { }
+    constructor(
+        private formBuilder: FormBuilder,
+        private accountService: AccountService,
+        private locationService: LocationService,
+        private usersHub: UsersHub
+    ) { }
 
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
@@ -28,9 +35,8 @@ export class RegisterComponent implements OnInit {
     }
 
     onRegisterClick({ value }: { value: RegisterModel }) {
-        this.accountService.register(value.username, value.passwords.password, value.passwords.passwordConfirmation)
-            .subscribe(res => {
-                console.log(res);
-            })
+        this.accountService.register(value.username, value.passwords.password, value.passwords.passwordConfirmation).subscribe(res => {
+            console.log('Registered', res);
+        });
     }
 }

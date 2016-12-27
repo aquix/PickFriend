@@ -11,6 +11,7 @@ import { AuthInfoStorage } from './account/auth-info-storage.service';
 import { AuthGuard } from './account/auth-guard.service';
 import { UserService } from './users/user.service';
 import { LocationService } from './main/map/location/location.service';
+import { UsersHub } from './signalr/users.hub';
 
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
@@ -38,7 +39,14 @@ const GMAPS_API_KEY = require('json!../secretconfig.json').gmapsApiKey;
         ProfileComponent,
         MapComponent
     ],
-    providers: [AccountService, AuthInfoStorage, AuthGuard, UserService, LocationService],
+    providers: [
+        AccountService,
+        AuthInfoStorage,
+        AuthGuard,
+        UserService,
+        LocationService,
+        UsersHub
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

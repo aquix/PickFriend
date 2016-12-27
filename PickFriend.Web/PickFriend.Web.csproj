@@ -227,6 +227,7 @@
     <Compile Include="Hubs\IUsersHub.cs" />
     <Compile Include="Hubs\UsersHub.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\UserFullInfo.cs" />
     <Compile Include="Models\UserShortInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Areas\Auth\Providers\ApplicationOAuthProvider.cs" />

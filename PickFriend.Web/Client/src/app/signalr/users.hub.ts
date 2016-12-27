@@ -3,12 +3,14 @@ import { Injectable } from '@angular/core';
 import { AppConfig } from '../app.config';
 import { AuthInfoStorage } from '../account/auth-info-storage.service';
 
-import { UsersHubServer } from './users-hub.server';
+import { User } from '../users/user';
+import { UserShortInfo } from '../users/user-short-info';
+
 import { UsersHubClient } from './users-hub.client';
 
 @Injectable()
 export class UsersHub {
-    private server: UsersHubServer;
+    private hub: any;
     private client: UsersHubClient;
 
     constructor(
@@ -18,15 +20,21 @@ export class UsersHub {
             throw new Error('The variable $ or the .hubConnection() function are not defined...please check the SignalR scripts have been loaded properly');
         }
 
-        let usersHub = $.connection['usersHub'];
+        this.hub = $.connection['usersHub'];
         $.connection.hub.url = `${AppConfig.SERVER}/signalr`;
 
-        this.client = new UsersHubClient(usersHub);
-        this.server = new UsersHubServer(usersHub);
+        this.client = new UsersHubClient(this.hub);
 
         $.connection.hub.start().done(() => {
             console.log('I am connected to hub');
-            this.server.userUpdated(this.authInfoStorage.authInfo.id);
         });
+    }
+
+    userAdded(user: User) {
+        this.hub.server.userAdded(user);
+    }
+
+    userStateChanged(user: UserShortInfo) {
+        this.hub.server.userStateChanged(user);
     }
 }

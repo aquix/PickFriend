@@ -315,7 +315,11 @@ namespace PickFriend.Web.Auth.Controllers
 
             var user = new User() {
                 UserName = model.Username,
-                UserInfo = new UserInfo()
+                UserInfo = new UserInfo
+                {
+                    Name = model.Name   
+                },
+                LocationInfo = new LocationInfo()
             };
 
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);

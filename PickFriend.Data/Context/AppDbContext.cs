@@ -20,6 +20,8 @@ namespace PickFriend.Data.Context
 
         public DbSet<UserInfo> UserInfoes { get; set; }
 
+        public DbSet<LocationInfo> LocationInfoes { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

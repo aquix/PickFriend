@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\AppDbContext.cs" />
+    <Compile Include="Entities\LocationInfo.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserInfo.cs" />
     <Compile Include="Migrations\201612230949018_Initial.cs" />

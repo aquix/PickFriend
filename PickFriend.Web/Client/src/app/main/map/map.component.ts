@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../users/user.model';
-import { UserService } from '../../users/user.service';
-import { LocationService } from './location/location.service';
 
+import { User } from '../../users/user';
+import { UserService } from '../../users/user.service';
+import { LocationService } from '../../location/location.service';
 import { UsersHub } from '../../signalr/users.hub';
+import { AuthInfoStorage } from '../../account/auth-info-storage.service';
 
 import './map.scss';
 
 @Component({
     selector: 'map',
     template: require('./map.html'),
-    providers: [UsersHub]
+    providers: []
 })
 export class MapComponent implements OnInit {
     users: User[];
@@ -20,6 +21,7 @@ export class MapComponent implements OnInit {
     constructor(
         private userService: UserService,
         private locationService: LocationService,
+        private authInfoStorage: AuthInfoStorage,
         private usersHub: UsersHub
     ) { }
 
@@ -31,6 +33,21 @@ export class MapComponent implements OnInit {
             console.log(location);
             this.myLatitude = location.latitude;
             this.myLongitude = location.longitude;
+        });
+
+        this.locationService.addLocationChangeListener(location => {
+            console.log('Location changed: ' + location);
+            this.myLatitude = location.latitude;
+            this.myLongitude = location.longitude;
+
+            this.usersHub.userStateChanged({
+                id: this.authInfoStorage.authInfo.id,
+                isOnline: true,
+                location: {
+                    latitude: location.latitude,
+                    longitude: location.longitude
+                }
+            })
         });
     }
 
