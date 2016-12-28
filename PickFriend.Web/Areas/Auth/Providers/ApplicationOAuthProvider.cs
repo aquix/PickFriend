@@ -34,11 +34,9 @@ namespace PickFriend.Web.Auth.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
-
             var userManager = GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(AppUserManager)) as AppUserManager;
 
-            User user = await userManager.FindAsync(context.UserName, context.Password);
+            User user = userManager.Find(context.UserName, context.Password);
 
             if (user == null)
             {

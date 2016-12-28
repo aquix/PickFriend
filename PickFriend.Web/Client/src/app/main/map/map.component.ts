@@ -35,19 +35,19 @@ export class MapComponent implements OnInit {
             this.myLongitude = location.longitude;
         });
 
-        this.locationService.addLocationChangeListener(location => {
-            console.log('Location changed: ' + location);
-            this.myLatitude = location.latitude;
-            this.myLongitude = location.longitude;
+        this.locationService.addLocationChangeListener(loc => {
+            console.log('Location changed: ' + loc);
+            this.myLatitude = loc.latitude;
+            this.myLongitude = loc.longitude;
 
             this.usersHub.userStateChanged({
                 id: this.authInfoStorage.authInfo.id,
                 isOnline: true,
                 location: {
-                    latitude: location.latitude,
-                    longitude: location.longitude
+                    latitude: loc.latitude,
+                    longitude: loc.longitude
                 }
-            })
+            });
         });
     }
 

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +10,8 @@ namespace PickFriend.Data.Entities
 {
     public class LocationInfo
     {
-        public string Id { get; set; }
+        [Key, ForeignKey("User")]
+        public string UserId { get; set; }
         public bool Online { get; set; }
 
         public double Latitude { get; set; }

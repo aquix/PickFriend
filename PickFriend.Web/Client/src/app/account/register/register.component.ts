@@ -4,7 +4,6 @@ import CustomValidators from '../custom-validators';
 
 import { AccountService } from '../account.service';
 import { LocationService } from '../../location/location.service';
-import { UsersHub } from '../../signalr/users.hub';
 import { RegisterModel } from './register-model.interface';
 
 @Component({
@@ -17,8 +16,7 @@ export class RegisterComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private accountService: AccountService,
-        private locationService: LocationService,
-        private usersHub: UsersHub
+        private locationService: LocationService
     ) { }
 
     ngOnInit() {
@@ -35,7 +33,7 @@ export class RegisterComponent implements OnInit {
     }
 
     onRegisterClick({ value }: { value: RegisterModel }) {
-        this.accountService.register(value.username, value.passwords.password, value.passwords.passwordConfirmation).subscribe(res => {
+        this.accountService.register(value).subscribe(res => {
             console.log('Registered', res);
         });
     }

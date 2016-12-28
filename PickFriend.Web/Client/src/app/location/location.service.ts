@@ -3,7 +3,7 @@ import { Location } from './location.interface';
 
 @Injectable()
 export class LocationService {
-    private _locationListeners: ((location: Location) => void)[];
+    private _locationListeners: ((location: Location) => void)[] = [];
 
     constructor() {
         if (!navigator.geolocation) {

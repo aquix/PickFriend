@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
+
 import { AppConfig } from '../app.config';
 import { AuthInfoStorage } from './auth-info-storage.service';
 import { IAuthInfo } from './auth-info.interface';
-import 'rxjs/add/operator/map';
+import { RegisterModel } from './register/register-model.interface';
 
 @Injectable()
 export class AccountService {
@@ -14,11 +16,12 @@ export class AccountService {
         private authTokenService: AuthInfoStorage
     ) { }
 
-    register(username: string, password: string, passwordConfirmation: string) {
+    register(regInfo: RegisterModel) {
         return this.http.post(`${AppConfig.API_PATH}/account/register`, {
-            username: username,
-            password: password,
-            confirmPassword: passwordConfirmation
+            username: regInfo.username,
+            password: regInfo.passwords.password,
+            confirmPassword: regInfo.passwords.passwordConfirmation,
+            name: regInfo.name
         }).map(res => res.status);
     }
 

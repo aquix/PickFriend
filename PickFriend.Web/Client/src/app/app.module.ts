@@ -10,7 +10,7 @@ import { AccountService } from './account/account.service';
 import { AuthInfoStorage } from './account/auth-info-storage.service';
 import { AuthGuard } from './account/auth-guard.service';
 import { UserService } from './users/user.service';
-import { LocationService } from './main/map/location/location.service';
+import { LocationService } from './location/location.service';
 import { UsersHub } from './signalr/users.hub';
 
 import { LoginComponent } from './account/login/login.component';

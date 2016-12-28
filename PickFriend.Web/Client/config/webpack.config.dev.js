@@ -19,10 +19,12 @@ module.exports = merge(commonConfig, {
 
     devServer: {
         port: 9000,
+        headers: { "Access-Control-Allow-Origin": "*" },
         contentBase: path.join(__dirname, '..', 'dist'),
         historyApiFallback: true,
         inline: true,
-        hot: true
+        hot: true,
+
     },
 
     plugins: [

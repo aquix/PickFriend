@@ -6,7 +6,7 @@
     </sebm-google-map-marker>
     <sebm-google-map-marker
             *ngFor="let user of users"
-            [latitude]="user.coordLat" [longitude]="user.coordLng"
+            [latitude]="user.location.latitude" [longitude]="user.location.longitude"
             (markerClick)="onMarkerClick()">
         <sebm-google-map-info-window [disableAutoPan]="false">
             <div class="user-map-preview">

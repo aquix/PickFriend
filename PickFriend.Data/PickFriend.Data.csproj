@@ -93,12 +93,19 @@
     <Compile Include="Migrations\201612230949018_Initial.Designer.cs">
       <DependentUpon>201612230949018_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612281019102_AddLocationInfo.cs" />
+    <Compile Include="Migrations\201612281019102_AddLocationInfo.Designer.cs">
+      <DependentUpon>201612281019102_AddLocationInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612230949018_Initial.resx">
       <DependentUpon>201612230949018_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612281019102_AddLocationInfo.resx">
+      <DependentUpon>201612281019102_AddLocationInfo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

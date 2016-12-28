@@ -15,10 +15,12 @@ namespace PickFriend.Web
     {
         public void Configuration(IAppBuilder app)
         {
+            // TODO only for 'clientUrl'
+            app.UseCors(CorsOptions.AllowAll);
+
             ConfigureAuth(app);
             ConfigureAutofac(app);
-
-            app.UseCors(CorsOptions.AllowAll);
+            
             app.MapSignalR();
         }
     }

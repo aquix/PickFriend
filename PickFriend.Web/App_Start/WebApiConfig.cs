@@ -19,11 +19,6 @@ namespace PickFriend.Web
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
-            // Enable CORS
-            var clientUrl = ConfigurationManager.AppSettings["clientUrl"];
-            var cors = new EnableCorsAttribute("*", "*", "*");
-            config.EnableCors(cors);
-
             // Web API routes
             config.MapHttpAttributeRoutes();
 
