@@ -1,22 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Microsoft.Owin;
-using Owin;
+﻿using Owin;
 using PickFriend.Web.Util;
-using Autofac.Integration.Owin;
 using System.Web.Http;
+using Autofac;
+using Autofac.Integration.WebApi;
 
 namespace PickFriend.Web
 {
-	public partial class Startup
+    public partial class Startup
 	{
-		public void ConfigureAutofac(IAppBuilder app)
+		public IContainer ConfigureAutofac(IAppBuilder app, HttpConfiguration config)
         {
             var container = AutofacConfig.Configure(app);
+            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+
             app.UseAutofacMiddleware(container);
-            app.UseAutofacWebApi(GlobalConfiguration.Configuration);
+            app.UseAutofacWebApi(config);
+
+            return container;
         }
 	}
 }

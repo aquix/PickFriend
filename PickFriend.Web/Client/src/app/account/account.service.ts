@@ -3,8 +3,8 @@ import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { AppConfig } from '../app.config';
-import { AuthInfoStorage } from './auth-info-storage.service';
-import { IAuthInfo } from './auth-info.interface';
+import { AuthInfoStorage } from '../auth/auth-info-storage.service';
+import { IAuthInfo } from '../auth/auth-info.interface';
 import { RegisterModel } from './register/register-model.interface';
 
 @Injectable()

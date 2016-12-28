@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Web;
-using System.Web.Http;
-using System.Web.Mvc;
 using Autofac;
-using Autofac.Core;
+using Autofac.Integration.SignalR;
 using Autofac.Integration.WebApi;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -30,12 +25,9 @@ namespace PickFriend.Web.Util
             RegisterTypes(builder, app);
 
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            builder.RegisterWebApiFilterProvider(GlobalConfiguration.Configuration);
+            builder.RegisterHubs(Assembly.GetExecutingAssembly());
 
-            IContainer container = builder.Build();
-            GlobalConfiguration.Configuration.DependencyResolver =
-                new AutofacWebApiDependencyResolver(container);
-            return container;
+            return builder.Build();
         }
 
         private static void RegisterTypes(ContainerBuilder builder, IAppBuilder app)

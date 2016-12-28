@@ -8,7 +8,7 @@ export class LocationService {
     constructor() {
         if (!navigator.geolocation) {
             navigator.geolocation.watchPosition((pos) => {
-                for(let listener of this._locationListeners) {
+                for (let listener of this._locationListeners) {
                     listener({
                         latitude: pos.coords.latitude,
                         longitude: pos.coords.longitude
@@ -31,19 +31,19 @@ export class LocationService {
                 });
             }, (err) => {
                 let message: string;
-                switch(err.code) {
-                case err.PERMISSION_DENIED:
-                    message = "User denied the request for Geolocation."
-                    break;
-                case err.POSITION_UNAVAILABLE:
-                    message = "Location information is unavailable."
-                    break;
-                case err.TIMEOUT:
-                    message = "The request to get user location timed out."
-                    break;
-                default:
-                    message = "Unknown error occured."
-                    break;
+                switch (err.code) {
+                    case err.PERMISSION_DENIED:
+                        message = 'User denied the request for Geolocation.';
+                        break;
+                    case err.POSITION_UNAVAILABLE:
+                        message = 'Location information is unavailable.';
+                        break;
+                    case err.TIMEOUT:
+                        message = 'The request to get user location timed out.';
+                        break;
+                    default:
+                        message = 'Unknown error occured.';
+                        break;
                 }
 
                 return reject(Error(message));

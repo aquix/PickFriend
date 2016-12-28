@@ -7,11 +7,12 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 import { AppComponent } from './app.component';
 
 import { AccountService } from './account/account.service';
-import { AuthInfoStorage } from './account/auth-info-storage.service';
+import { AuthInfoStorage } from './auth/auth-info-storage.service';
 import { AuthGuard } from './account/auth-guard.service';
 import { UserService } from './users/user.service';
 import { LocationService } from './location/location.service';
 import { UsersHub } from './signalr/users.hub';
+import { AuthHttp } from './auth/auth-http.service';
 
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
@@ -45,7 +46,8 @@ const GMAPS_API_KEY = require('json!../secretconfig.json').gmapsApiKey;
         AuthGuard,
         UserService,
         LocationService,
-        UsersHub
+        UsersHub,
+        AuthHttp
     ],
     bootstrap: [AppComponent]
 })

@@ -1,9 +1,16 @@
+import { UserShortInfo } from '../users/user-short-info';
+import { User} from '../users/user';
+
 export class UsersHubClient {
     constructor(private usersHub: any) {
-        usersHub.client.notifyUserUpdated = this.notifyUserUpdated;
+        usersHub.client.notifyUserStateChanged = this.notifyUserStateChanged;
     }
 
-    notifyUserUpdated(id: string) {
-        console.log(`User ${id} updated`);
+    notifyUserStateChanged(user: UserShortInfo) {
+        console.log(`User ${user.id} updated`);
+    }
+
+    notifyUserAdded(user: User) {
+        console.log(`User ${user.id} added`);
     }
 };

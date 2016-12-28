@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
-using System.Web;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.SignalR;
 using PickFriend.Data.Context;
-using PickFriend.Data.Entities;
 using PickFriend.Web.Models;
 
 namespace PickFriend.Web.Hubs
@@ -22,14 +18,14 @@ namespace PickFriend.Web.Hubs
 
         public override Task OnConnected()
         {
-            Debug.Print($"User connected {Context.User.Identity.Name}");
+            Debug.Print($"User connected {Context?.User?.Identity.GetUserId()}");
 
             return base.OnConnected();
         }
 
         public override Task OnDisconnected(bool stopCalled)
         {
-            Debug.Print($"User disconnected {Context.User.Identity.Name}");
+            Debug.Print($"User disconnected {Context?.User?.Identity.Name}");
 
             return base.OnDisconnected(stopCalled);
         }
@@ -41,6 +37,7 @@ namespace PickFriend.Web.Hubs
 
         public async Task UserStateChanged(UserShortInfo user)
         {
+            Debug.Print($"User state changed {user.Id}");
             var userLocationInfo = _dbContext.LocationInfoes.Find(user.Id);
 
             if (userLocationInfo != null)
